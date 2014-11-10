@@ -4,7 +4,7 @@
 <%@ page import="com.google.appengine.api.utils.SystemProperty" %>
 
 <html>
-  <body>
+  <body style="background:pink">
 
 <%
 String url = null;
@@ -15,13 +15,13 @@ if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Produ
 } else {
   // Local MySQL instance to use during development.
   Class.forName("com.mysql.jdbc.Driver");
-  url = "jdbc:mysql://127.0.0.1:3306/strokes-gained?user=c00175471&password=carlowithdip";
+  url = "jdbc:mysql://127.0.0.1:3306/strokes-gained?user=root&password=golf1556";
 }
 
 Connection conn = DriverManager.getConnection(url);
 ResultSet rs = conn.createStatement().executeQuery("SELECT ID, Name FROM Course");
 %>
-
+<div style="margin: 20px auto; width:100%; max-width:1200px; background:#fff">
 <table style="border: 1px solid black">
 <tbody>
 <tr>
@@ -53,5 +53,6 @@ No more courses!
     <div><input type="submit" value="Add Course" /></div>
     <input type="hidden" name="addCourse" />
   </form>
+  <div>
   </body>
 </html>

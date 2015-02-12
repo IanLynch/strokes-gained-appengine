@@ -10,9 +10,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>addCourse</servlet-name>
-		<servlet-class>com.lynch.strokesgained.AddCourseServlet</servlet-class>
+		<servlet-class>com.lynch.strokesgained.web.AddCourseServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>addCourse</servlet-name>
 		<url-pattern>/addcourse</url-pattern>
@@ -20,9 +19,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>addPlayer</servlet-name>
-		<servlet-class>com.lynch.strokesgained.AddPlayerServlet</servlet-class>
+		<servlet-class>com.lynch.strokesgained.shared.AddPlayerServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>addPlayer</servlet-name>
 		<url-pattern>/addplayer</url-pattern>
@@ -30,9 +28,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	
 	<servlet>
 		<servlet-name>addRound</servlet-name>
-		<servlet-class>com.lynch.strokesgained.AddRoundServlet</servlet-class>
+		<servlet-class>com.lynch.strokesgained.shared.AddRoundServlet</servlet-class>
 	</servlet>
-	
 	<servlet-mapping>
 		<servlet-name>addRound</servlet-name>
 		<url-pattern>/addround</url-pattern>

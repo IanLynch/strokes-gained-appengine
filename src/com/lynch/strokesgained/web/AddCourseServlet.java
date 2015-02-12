@@ -1,4 +1,4 @@
-package com.lynch.strokesgained;
+package com.lynch.strokesgained.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.utils.SystemProperty;
 
 @SuppressWarnings("serial")
-public class AddPlayerServlet extends HttpServlet {
+public class AddCourseServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String url = null;
@@ -39,16 +39,14 @@ public class AddPlayerServlet extends HttpServlet {
 	    try {
 	    	Connection conn = DriverManager.getConnection(url);
 	    	try {
-	    		String fname = req.getParameter("fname");
-	    		String sname = req.getParameter("sname");
-	    		if (fname == "") {
-	    			out.println("<html><head></head><body>You did not enter a player name! Try again! Redirecting in 2 seconds...</body></html>");
+	    		String name = req.getParameter("name");
+	    		if (name == "") {
+	    			out.println("<html><head></head><body>You did not enter a course name! Try again! Redirecting in 2 seconds...</body></html>");
 	    		} 
 	    		else {
-	    			String statement = "INSERT INTO Player (Name1,Name2) VALUES( ?, ? )";
+	    			String statement = "INSERT INTO Course (Name) VALUES( ? )";
 	    			PreparedStatement stmt = conn.prepareStatement(statement);
-	    			stmt.setString(1, fname);
-	    			stmt.setString(2, sname);
+	    			stmt.setString(1, name);
 	    			int success = 2;
 	    			success = stmt.executeUpdate();
 	    			if (success == 1) {
@@ -67,6 +65,6 @@ public class AddPlayerServlet extends HttpServlet {
 	    	e.printStackTrace();
 	    }
 	    
-	    resp.setHeader("Refresh", "2; url=/addplayer.jsp");
+	    resp.setHeader("Refresh", "2; url=/addcourse.jsp");
 	}
 }

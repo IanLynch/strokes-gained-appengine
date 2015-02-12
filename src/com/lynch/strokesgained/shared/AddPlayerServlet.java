@@ -1,4 +1,4 @@
-package com.lynch.strokesgained;
+package com.lynch.strokesgained.shared;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.utils.SystemProperty;
 
 @SuppressWarnings("serial")
-public class AddRoundServlet extends HttpServlet {
+public class AddPlayerServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String url = null;
@@ -39,23 +39,16 @@ public class AddRoundServlet extends HttpServlet {
 	    try {
 	    	Connection conn = DriverManager.getConnection(url);
 	    	try {
-	    		String rounddate = req.getParameter("rounddate");
-	    		String notes = req.getParameter("notes");
-	    		String playerid = req.getParameter("playerid");
-	    		String courseid = req.getParameter("courseid");
-	    		if (playerid == "" || playerid == "0") {
-	    			out.println("<html><head></head><body>You did not select a player! Try again! Redirecting in 2 seconds...</body></html>");
-	    		} 
-	    		if (courseid == "" || courseid == "0") {
-	    			out.println("<html><head></head><body>You did not select a course! Try again! Redirecting in 2 seconds...</body></html>");
+	    		String fname = req.getParameter("fname");
+	    		String sname = req.getParameter("sname");
+	    		if (fname == "") {
+	    			out.println("<html><head></head><body>You did not enter a player name! Try again! Redirecting in 2 seconds...</body></html>");
 	    		} 
 	    		else {
-	    			String statement = "INSERT INTO Round (RoundDate,Notes,Course_ID,Player_ID) VALUES( ?, ?, ?, ? )";
+	    			String statement = "INSERT INTO Player (Name1,Name2) VALUES( ?, ? )";
 	    			PreparedStatement stmt = conn.prepareStatement(statement);
-	    			stmt.setString(1, rounddate);
-	    			stmt.setString(2, notes);
-	    			stmt.setString(3, courseid);
-	    			stmt.setString(4, playerid);
+	    			stmt.setString(1, fname);
+	    			stmt.setString(2, sname);
 	    			int success = 2;
 	    			success = stmt.executeUpdate();
 	    			if (success == 1) {
@@ -74,6 +67,6 @@ public class AddRoundServlet extends HttpServlet {
 	    	e.printStackTrace();
 	    }
 	    
-	    resp.setHeader("Refresh", "2; url=/addround.jsp");
+	    resp.setHeader("Refresh", "2; url=/addplayer.jsp");
 	}
 }
